@@ -6,13 +6,14 @@ input = sys.stdin.readline
 c = int(input())
 ans = []
 
+dR = 1, 2, 2, 1, -1, -2, -2, -1
+dC = 2, 1, -1, -2, -2, -1, 1, 2
+
 for _ in range(c) :
     n = int(input())
     sR, sC = map(int, input().split())
     eR, eC = map(int, input().split())
 
-    dR = 1, 2, 2, 1, -1, -2, -2, -1
-    dC = 2, 1, -1, -2, -2, -1, 1, 2
     visited = [[ 0 for _ in range(n)] for _ in range(n)]
     que = deque()
     que.append((sR, sC, 0))

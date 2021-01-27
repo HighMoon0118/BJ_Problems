@@ -23,9 +23,9 @@ for _ in range(c) :
                 now = que.popleft()
                 for next in graph[now] :
                     if teamNum[next]==-1 :
-                        teamNum[next]=(teamNum[child]+1)%2
+                        teamNum[next]=(teamNum[now]+1)%2
                         que.append(next)
-                    elif teamNum[next]!=(teamNum[child]+1)%2 :
+                    elif teamNum[next]!=(teamNum[now]+1)%2 :
                         isBN=False
                         break
                 if not isBN : break
