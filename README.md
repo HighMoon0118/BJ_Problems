@@ -8,15 +8,15 @@
 >
 > 보통 BFS는 큐로 구현을 하게 되고
 >
-> 어떤 노드를 큐 안에 집어 넣을 땐 방문을 했다고 기록을하고 넣어야 한다.
+> 어떤 노드를 큐 안에 넣을 땐 방문을 했다고 기록을하고 넣어야 한다.
 >
 > 하지만 나는 큐에서 꺼내고 나서 방문 기록을 체크했다.
 >
-> 이렇게하면 문제되는 것은 큐안에 같은 노드가 여러개 들어갈 뿐만 아니라
+> 이렇게하게 되면 큐안에 같은 노드가 여러번 들어갈 뿐만 아니라
 >
-> 최단거리를 구하는 문제라면 틀린답까지 나오게 된다.
-
-**<옳은 풀이>**
+> 최단거리를 구하는 문제라면 틀린답이 나오게 된다.
+>
+> **<옳은 풀이>**
 
 ```python
 while que :
@@ -26,7 +26,7 @@ while que :
     for i in range(4) :
         nextR, nextC = r+dr[i], c+dc[i]
         if 0<=nextR and 0<=nextC and board[nextR][nextC]==0 :
-            board[nextR][nextC]=1
+            board[nextR][nextC]=1  # 큐 안에 넣기 전에 기록
             ans = count+1
             que.append((nextR, nextC, ans))
 ```
@@ -37,7 +37,7 @@ while que :
 while que :
     
     r,c,count = que.popleft()
-    board[r][c]=1
+    board[r][c]=1  # 큐에서 꺼내고 나서 기록
     
     for i in range(4) :
         nextR, nextC = r+dr[i], c+dc[i]
@@ -53,7 +53,7 @@ while que :
 >
 > Comparator나 Comparable을 사용하는 자바와 다르게
 >
-> 정렬기준의 값을 넣고 오름차순 정렬을 하는 느낌을 받았다.
+> 정렬기준의 값을 넣고 오름차순 정렬을 한다는 느낌을 받았다.
 
 ```python
 from queue import PriorityQueue
@@ -62,7 +62,7 @@ def findFish(r, c, s) :
     que = PriorityQueue()  # 우선순위 큐
     visited = [[False for _ in range(n)] for _ in range(n)]
     visited[r][c]=True
-    que.put((0,r,c))
+    que.put((0,r,c))  # 인덱스의 값을 비교하며 오름차순 정렬
     while not que.empty() :
         d, row, col = que.get()
         if 0<board[row][col]<s : 
@@ -85,9 +85,9 @@ def findFish(r, c, s) :
 >
 > 처음 이 문제를 순환이 있는지 없는지로 풀었는데 틀린 답이 나왔다.
 >
-> 간선이 1-2, 2-3, 3-4, 4-1 로 주어질 경우, 1에서 시작해서 1로 돌아오지만 이분 그래프인 반례가 있기 때문이다. (1,3이 같은집합, 2,4가 같은 집합)
+> 간선이 1-2, 2-3, 3-4, 4-1 로 주어질 경우, 1에서 시작해서 1로 돌아오지만 이분 그래프는 될 수 있는 반례가 있기 때문이다. (1,3이 같은집합, 2,4가 같은 집합)
 >
-> 집합은 두개 밖에 없기 때문에 각 집합에 0과 1이라는 숫자를 부여했고, 각 노드마다 속한 집합의 번호를 기록하며 문제를 풀어나갔다.
+> 그 다음엔, 집합은 두개 밖에 없기 때문에 각 집합에 0과 1이라는 숫자를 부여했고, 각 노드마다 속한 집합의 번호를 기록하며 문제를 풀어나갔다.
 
 ```python
 que = deque()
