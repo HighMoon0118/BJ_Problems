@@ -13,7 +13,7 @@ ans = [1 for _ in range(n)]
 for i in range(n) :
     count = 0
     for j in range(i+1, n) :
-        if info[i][0]<info[j][0] and info[i][1]<info[j][1] :
+        if info[i][1]<info[j][1] and info[i][0]!=info[j][0] :
             count+=1
     ans[info[i][2]]+=count
 
