@@ -112,3 +112,30 @@ for i in range(1, n+1) :  # 모든 노드를 조사
     if not isBN : break
 ```
 
+
+
+### 15683번 문제 : 감시
+
+> 삼성 기출 문제답게 구현문제이다. 항상 문제를 풀고나서 다른 사람들은 어떻게 풀었는지 보곤 하는데 나보다 10배나 빠르게 푼 사람이 있어서 글을 남긴다.
+>
+> 나는 모든 경우에서 cctv가 바라보는 곳을 전부 그래프에 체크해주고 마지막에 사각지대의 개수를 세서 답을 도출했는데 이러한 과정에서 계속 그래프를 deepcopy해줘야하는 낭비가 생겼다.
+>
+> 하지만, 이 분은 set을 사용하여 cctv가 바라보는 좌표를 넣으며 문제를 풀었다. 이렇게 풀면 새로운 그래프를 계속 만들지 않아도 될 뿐만 아니라 답을 도출할 때 그래프를 다 탐색하지 않아도 set의 길이만큼 빼주면 된다. 
+>
+> 또한 나는 바라보는 방향마다 케이스를 나눠서 코드가 길어졌는데, 이 분은 각 방향마다 변하는 row, column값을 리스트에 넣어 for문을 돌렸다.  생각하기 귀찮아서 막 코드를 짰는데 앞으론 좀 더 신경을 써야곘다.
+
+```python
+dr, dc = (-1, 0, 1, 0), (0, 1, 0, -1)
+
+def look_at(r, c, direction):
+    check = set()
+    for i in range(4):
+        new_r, new_c = r + dr[i], c + dc[i]
+        while 0 <= new_r < N and 0 <= new_c < M:
+            if board[new_r][new_c] == 6: break
+            if board[new_r][new_c] == 0: check.add((new_r, new_c))
+            new_r, new_c = new_r + dr[d], new_c + dc[d]
+
+    return check
+```
+

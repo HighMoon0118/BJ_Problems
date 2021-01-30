@@ -15,8 +15,6 @@ for i in range(n):
         if 0<board[i][j]<6:
             cctv.append((board[i][j],i,j))
 
-
-
 def count_blank(tmp) :
     count = 0
     for i in range(n):
@@ -37,7 +35,7 @@ def look_at(tmp,r,c,*tv):
             for a in range(r+1, n):
                 if tmp[a][c]==0:
                     tmp[a][c]=-1
-                elif tmp[r][a]==6:
+                elif tmp[a][c]==6:
                     break
         elif i==2:
             for a in range(c-1,-1,-1):
@@ -49,7 +47,7 @@ def look_at(tmp,r,c,*tv):
             for a in range(r-1,-1,-1):
                 if tmp[a][c]==0:
                     tmp[a][c]=-1
-                elif tmp[r][a]==6:
+                elif tmp[a][c]==6:
                     break
 
 
