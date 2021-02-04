@@ -8,6 +8,7 @@ check = [ False for _ in range(n+1)]
 count=0
 finish=False
 for i in range(2,n+1):
+    if check[i] : continue
     for num in range(i, n+1, i):
         if not check[num]:
             check[num]=True

@@ -13,7 +13,7 @@ def check_right(num) :
     return gear[num][a]  
 
 gear = []
-start = [0 for _ in range(4)]
+start = [0 for _ in range(4)]  # 현재 톱니바퀴의 12시에 있는 index 저장
 for i in range(4) :
     gear.append(input())
 
