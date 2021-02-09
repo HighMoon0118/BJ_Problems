@@ -163,3 +163,41 @@ def look_at(r, c, direction):
 >
 >앞으로 문제를 풀 때, 이를 주의하면서 풀어야겠다.
 
+
+
+### 1713번 문제 : 후보 추천하기
+
+> 나는 처음에 사진틀에 후보가 중복되면 안되기 때문에 set을 사용했고, 리스트 안에 [추천수, 인덱스, 후보번호]를 넣고 각 요소를 기준으로 정렬하며 문제를 풀었다.
+>
+> 사진틀의 수나 추천 횟수가 커진다면 정렬때문에 분명 시간초과가 나는 풀이다.
+>
+> 이 문제에서 사진을 삭제하는 우선순위는 추천수 > 게시시간 이고 학생번호가 최대 100인것을 이용하면 효율적으로 문제를 풀 수 있다.
+>
+> 학생별로 추천을 받은 수를 저장할 크기 101의 배열을 만들고,  추천 순서대로 학생을 저장할 크기 n인 리스트를 만들어주면 된다. for문을 돌면서 자연스럽게 '게시시간' 순대로 도는 것이 이 풀이의 핵심이다.
+
+```python
+n = int(input())
+vote = int(input())
+votes = list(map(int, input().split()))
+vote_count = [0 for _ in range(101)]
+board = []
+
+for v in votes:
+    if vote_count[v]:
+        vote_count[v] += 1
+    else:
+        board.append(v)
+        vote_count[v] = 1
+
+    if len(board) > n:
+        min_vote = 1001
+        for i in range(len(board) - 1):
+            if vote_count[board[i]] < min_vote:
+                min_vote = vote_count[board[i]]
+                who = board[i]
+        board.remove(who)
+        vote_count[who] = 0
+board.sort()
+print(*board)
+```
+
