@@ -22,10 +22,11 @@ def makeAnswer(friend, count):  # dfs로 풀었지만 bfs가 더 간단할 듯
     for i in relate[friend]:
         if check[i]==-1:
             check[i]=count+1
-            result += 1+makeAnswer(i, count+1)
+            result += 1 + makeAnswer(i, count+1)
         elif count < check[i]:
             check[i]=count+1
             result += makeAnswer(i, count+1)
+            
     return result
 
 print(makeAnswer(1,0))
