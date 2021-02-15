@@ -1,0 +1,43 @@
+import sys
+
+input = sys.stdin.readline
+
+n = int(input())
+m = int(input())
+
+board = [[0 for _ in range(n)] for _ in range(n)]
+
+dr = [0, 1, 0, -1] # 오른쪽, 아래쪽, 왼쪽, 위쪽
+dc = [1, 0, -1, 0]
+
+r = n//2  # 시작 row
+c = n//2  # 시작 column
+num = 1  # 해당 위치에 들어갈 숫자
+count = 3  # 4방향 인덱스
+len = 0  # 특정 방향으로 이동할 길이
+
+board[r][c] = num
+
+while True:
+    for _ in range(len):  # 특정 방향으로 한칸씩 이동하며 숫자 입력
+        r+=dr[count]
+        c+=dc[count]
+        num+=1
+        board[r][c]=num
+        if num==m:  # 찾을 번호의 인덱스 저장
+            ans = [r+1, c+1]
+
+    if r==c==0:
+        break
+
+    count+=1
+
+    if  count==4:  # 4방향으로 다 움직였을 경우 좌상 위치로 이동, count 초기화
+        r -= 1
+        c -= 1
+        len += 2
+        count = 0
+
+for i in range(n):
+    print(*board[i])
+print(*ans)
