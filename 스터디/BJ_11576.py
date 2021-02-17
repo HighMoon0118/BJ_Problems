@@ -2,13 +2,13 @@ import sys
 
 input = sys.stdin.readline
 
-def trans_from():
+def trans_from():  # a진법에서 10진법으로
     result = 0
     for i, num in enumerate(nums[::-1]):
         result += num*(a**i)
     return result
 
-def trans_to(num):
+def trans_to(num):  # 10진법을 b진법으로
     result = []
     while num//b:
         result.append(num%b)
