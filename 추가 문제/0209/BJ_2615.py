@@ -8,7 +8,7 @@ for _ in range(19):
 
 finish = False
 row, col = -1, -1
-for i in range(19):
+for i in range(19):  # 가로 탐색
     count = 1
     for j in range(18):
         if board[i][j]!=0 and board[i][j]==board[i][j+1]:
@@ -20,7 +20,7 @@ for i in range(19):
         else: count=1
     if finish: break
 
-for i in range(19):
+for i in range(19):  # 세로 탐색
     count = 1
     for j in range(18):
         if board[j][i]!=0 and board[j][i]==board[j+1][i]:
@@ -33,7 +33,7 @@ for i in range(19):
     if finish: break
 
 r, c = 18, 0
-while r!=0 or c!=18:
+while r!=0 or c!=18:  # 오른쪽 아래 대각선 탐색
     rr, cc = r, c
     count = 1
     while rr!=18 and cc!=18:
@@ -51,7 +51,7 @@ while r!=0 or c!=18:
     if finish: break
 
 r, c = 18, 18
-while r!=0 or c!=0:
+while r!=0 or c!=0:  # 왼쪽 아래 대각선 탐색
     rr, cc = r, c
     count = 1
     while rr!=18 and cc!=0:
