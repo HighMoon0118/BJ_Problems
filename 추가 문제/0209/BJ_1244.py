@@ -8,20 +8,17 @@ switches = list(map(int, input().split()))
 m = int(input())
 for _ in range(m):
     sex, num = map(int, input().split())
-    if sex==1:
+    if sex==1:  # 남자일 때
         i = num-1
         while i < n:
             switches[i] = 0 if switches[i] else 1
-            i+=num
-    else:
-        switches[num-1] = 0 if switches[num-1] else 1
-        l, r = num-2, num
-        while 0<=l and r<n:
-            if switches[l]==switches[r]:
-                switches[l] = 0 if switches[l] else 1
-                switches[r] = 0 if switches[r] else 1
-                l-=1
-                r+=1
+            i+=num 
+    else:  # 여자일 때
+        l = r = num-1
+        while 0 <= l and r < n:
+            if switches[l] == switches[r]:
+                switches[l] = switches[r] = 0 if switches[l] else 1
+                l, r = l-1, r+1
             else:
                 break
 ans = ""
