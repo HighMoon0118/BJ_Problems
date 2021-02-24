@@ -217,3 +217,39 @@ b/=2  # b = -2.5
 b=int(b)  # b = -2
 ```
 
+
+
+### 2479번 문제 : 경로 찾기
+
+> 이 문제는 직접 인접 행렬을 만들어야 하는 문제이다.
+>
+> 또한 경로를 역 추적하기 위해서 순서를 넣을 리스트도 따로 만들어야한다.
+>
+> 오랜만에 풀어보는 유형이라 고생좀 했다...
+
+```python
+def makeBoard():  # 인접행렬 만드는 함수, 한 비트만 다를경우 연결
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            diff = num[i]^num[j]
+            count = 0
+            for b in range(k):
+                if diff&(1<<b):
+                    count+=1
+            if count==1:
+                board[i][j]=1
+                board[j][i]=1
+```
+
+```python
+    ans = [b]
+    i = b
+    while i!=a:  # order리스트 안에 순서를 넣고 역 추적
+        d -= 1
+        for j in range(1, n+1):
+            if check[i][j] and order[j]==d:
+                ans.append(j)
+                i = j
+                break
+```
+

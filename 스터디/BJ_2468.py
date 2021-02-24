@@ -7,7 +7,7 @@ dc = [1, 0, -1, 0]
 def makeAnswer(r, c):
     for _ in range(4):
         nr, nc = r+dr[_], c+dc[_]
-        if 0<=nr<n and 0<=nc<n and board[nr][nc]>i and not visited[nr][nc]:
+        if 0<=nr<n and 0<=nc<n and not visited[nr][nc] and board[nr][nc]>i:
             visited[nr][nc] = True
             makeAnswer(nr, nc)
 
@@ -24,7 +24,7 @@ for i in range(1, 100):
         visited = [[False for _ in range(n)] for _ in range(n)]
         for r in range(n):
             for c in range(n):
-                if board[r][c] > i and not visited[r][c]:
+                if not visited[r][c] and board[r][c] > i:
                     visited[r][c] = True
                     result += 1
                     makeAnswer(r, c)
