@@ -20,8 +20,8 @@ for i in range(n):
     else:
         tree[p[i]].append(i)
 delete = int(input())
-if delete == start:
+if delete == start:  # 시작노드를 삭제했다면 0을 출력
     print(0)
-else:
+else:  # 노드를 제거하고 dfs
     tree[p[delete]].remove(delete)
     print(dfs(start))
