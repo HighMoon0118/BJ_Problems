@@ -2,7 +2,7 @@ import sys
 
 input = sys.stdin.readline
 
-def makeIt(num, result):
+def makeIt(num, result):  # 순열
     global ans, count
     if count == k or num > n:
         return
