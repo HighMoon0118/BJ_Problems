@@ -5,7 +5,7 @@ input = sys.stdin.readline
 def makeIt(startN, index):
     global count, ans
 
-    if startN < 0 or ans: return
+    if ans: return
 
     num[index] = startN
     
@@ -16,7 +16,7 @@ def makeIt(startN, index):
             finish: True
         return
 
-    for j in range(0, startN):
+    for j in range(index-1, startN):
         makeIt(j, index-1)
 
 

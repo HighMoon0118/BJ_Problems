@@ -24,21 +24,24 @@ def makeIt(next):
                         used[b] = bb if b>0 else -bb
                         used[-b] = -used[b]
                         makeIt(next+1)
-                        used[a] = used[-a] = used[b] = used[-b] = 0
+        used[a] = used[-a] = used[b] = used[-b] = 0
+
     elif not used[a]:  # 변수 a만 사용한적 없을 때
         for aa in boolean:
             if a*aa>0 or used[b]>0:
                 used[a] = aa if a>0 else -aa
                 used[-a] = -used[a]
                 makeIt(next+1)
-                used[a] = used[-a] = 0
+        used[a] = used[-a] = 0
+
     elif not used[b]:  # 변수 b만 사용한적 없을 때
         for bb in boolean:
             if b*bb>0 or used[a]>0:
                 used[b] = bb if b>0 else -bb
                 used[-b] = -used[b]
                 makeIt(next+1)
-                used[b] = used[-b] = 0
+        used[b] = used[-b] = 0
+        
     elif used[a]==-1 and used[b]==-1:  # 두 변수 모두 사용했을 때 둘다 False면
         return
     else:
