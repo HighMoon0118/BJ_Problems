@@ -12,21 +12,21 @@ dr = [0, 1, 0, -1]
 dc = [1, 0, -1, 0]
 finish = False
 ans = 0
-while not finish:
+while True:
     finish = True
     que = deque()
     visited = [[False for _ in range(N+2)] for _ in range(N+2)]
-    for r in range(1, N+1):
-        for c in range(1, N+1):
-            if not visited[r][c]:
+    for rr in range(1, N+1):
+        for cc in range(1, N+1):
+            if not visited[rr][cc]:
                 for i in range(4):
-                    nr, nc = r+dr[i], c+dc[i]
-                    if L <= abs(board[nr][nc]-board[r][c]) <= R:
+                    nr, nc = rr+dr[i], cc+dc[i]
+                    if L <= abs(board[nr][nc]-board[rr][cc]) <= R:
                         finish = False
-                        union = [(r,c)]
-                        total = board[r][c]
-                        que.append((r,c))
-                        visited[r][c] = True
+                        union = [(rr,cc)]
+                        total = board[rr][cc]
+                        que.append((rr,cc))
+                        visited[rr][cc] = True
                         while que:
                             r, c = que.popleft()
                             for i in range(4):
