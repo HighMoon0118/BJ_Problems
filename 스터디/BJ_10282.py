@@ -27,5 +27,5 @@ for _ in range(tc):
             cnt+=1
             if last < time[i]:
                 last = time[i]
-    ans.append("{} {}".format(cnt, last))
+    ans.append(f"{cnt} {last}")
 print("\n".join(ans))
