@@ -2,6 +2,20 @@ import sys
 
 input = sys.stdin.readline
 
+def bellman():
+    for i in range(n-1):
+        for j in range(m):
+            s, e, t = edge[j]
+            if time[e] > time[s] + t:
+                time[e] = time[s] + t
+
+    for j in range(m):
+        s, e, t = edge[j]
+        if time[e] > time[s] + t:
+            return True
+
+    return False
+    
 n, m = map(int, input().split())
 edge = []
 for _ in range(m):
@@ -11,21 +25,7 @@ MAX_TIME = sys.maxsize
 time = [MAX_TIME for _ in range(n+1)]
 time[1] = 0
 
-def bellman(start):
-    for i in range(n-1):
-        for j in range(m):
-            s, e, t = edge[j]
-            if time[s] != MAX_TIME and time[e] > time[s] + t:
-                time[e] = time[s] + t
-
-    for j in range(m):
-        s, e, t = edge[j]
-        if time[s] != MAX_TIME and time[e] > time[s] + t:
-            return True
-
-    return False
-
-negativeCycle = bellman(1)
+negativeCycle = bellman()
 
 if negativeCycle: print(-1)
 else :
