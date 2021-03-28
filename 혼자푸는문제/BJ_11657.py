@@ -6,16 +6,16 @@ def bellman():
     for i in range(n-1):
         for j in range(m):
             s, e, t = edge[j]
-            if time[e] > time[s] + t:
+            if time[s] != MAX_TIME and time[e] > time[s] + t:
                 time[e] = time[s] + t
 
     for j in range(m):
         s, e, t = edge[j]
-        if time[e] > time[s] + t:
+        if time[s] != MAX_TIME and time[e] > time[s] + t:
             return True
 
     return False
-    
+
 n, m = map(int, input().split())
 edge = []
 for _ in range(m):
