@@ -5,7 +5,6 @@ input = sys.stdin.readline
 def bellman():
     
     takes = [INF for _ in range(n+1)]
-    takes[1] = 0
     for _ in range(n-1):
         for s, e, t in edges:
             if takes[s]+t < takes[e]:
