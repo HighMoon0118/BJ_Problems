@@ -6,7 +6,7 @@ def bellman():
     for i in range(n-1):
         for j in range(m):
             s, e, t = edge[j]
-            if time[s] != MAX_TIME and time[e] > time[s] + t:
+            if time[s] != MAX_TIME and time[e] > time[s] + t:  # 만약 시작지점과 연결돼있고 더 짧은 거리라면 업데이트
                 time[e] = time[s] + t
 
     for j in range(m):
