@@ -13,6 +13,7 @@ def djt():
     while que:
         c, path = heapq.heappop(que)
         now = path[-1]
+        if cycle[now]: continue
         for next, plus in graph[now]:
             if cost[next] > c + plus - money[next]:
                 cost[next] = c + plus - money[next]
