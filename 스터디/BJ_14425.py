@@ -2,6 +2,7 @@ import sys
 
 input = sys.stdin.readline
 
+
 # class Trie:
 #     def __init__(self):
 #         self.children = {}
