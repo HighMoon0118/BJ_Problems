@@ -3,11 +3,15 @@ def make_it(i, sum):
         if sum%3 == 0:
             return 1
         return 0
+
     if dp[i][sum] >= 0:
         return dp[i][sum]
+
     dp[i][sum] = 0
+
     for num in range(3):
         dp[i][sum] += make_it(i+1, sum+num)
+        
     return dp[i][sum]
 
 n = int(input())
