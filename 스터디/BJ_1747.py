@@ -17,8 +17,11 @@ def is_prime(number):
             return False
     return True
 
+if n==1:
+    n = 2
+    
 while True:
-    if is_prime(n) and is_pel(str(n)):
+    if is_pel(str(n)) and is_prime(n):
         print(n)
         break
     n += 1

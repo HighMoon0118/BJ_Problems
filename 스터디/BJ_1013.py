@@ -28,7 +28,7 @@ def make_it(word):
         else:
             word = word[j:]
             if word[1] == "0": word = "1" + word
-            make_it(word[j:])
+            make_it(word)
         
         
 
