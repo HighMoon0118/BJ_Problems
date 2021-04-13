@@ -10,7 +10,6 @@ def is_asc(word):
     return True
 
 def make_it():
-    
     que = deque()
     que.append((num, 0))
 
