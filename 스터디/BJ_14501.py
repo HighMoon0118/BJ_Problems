@@ -15,9 +15,9 @@ def make_it(next):
 
 n = int(input())
 task = [[]]+[list(map(int, input().split())) for i in range(n)]
-dp = [-1 for _ in range(n+1)]
+dp = [-1 for _ in range(n+1)]  # dp[i] = i일 이후로 벌 수 있는 최대 금액
 
 for i in range(1, n+1): 
-    task[i][0] = i + task[i][0] - 1
+    task[i][0] = i + task[i][0] - 1  # 상담이 끝나는 날짜 저장
 
 print(make_it(0))

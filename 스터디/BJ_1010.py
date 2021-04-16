@@ -2,7 +2,7 @@ import sys
 
 input = sys.stdin.readline
 
-def make_it(a, b):
+def make_it(a, b):  # nCr
     if b==0 or a==b: return 1
     if dp[a][b] >=0: return dp[a][b]
     
