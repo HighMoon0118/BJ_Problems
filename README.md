@@ -355,3 +355,49 @@ def make_it():
     return -1
 ```
 
+
+
+### SWEA 5204번 문제 : 병합 정렬
+
+> n이 최대 1000000이 주어지는 문제이다. 병합정렬을 해주기 위해선 잠시 배열을 옮겨두는 temp를 만들어야 하는데 나는 테스트케이스마다 temp를 새로 만들다보니 런타임 오류가 계속 나게 되었다...
+>
+> 이 문제때문에 얼마나 시간을 날린건지..ㅠㅠ
+
+```python
+def merge(l, r):
+    global cnt
+    if r-l==1: return
+
+    mid = (l+r)>>1
+    merge(l, mid)
+    merge(mid, r)
+
+    i, s, e = l, l, mid
+    if num[mid-1] > num[r-1]: cnt += 1
+    while i < r:
+        if r == e or s < mid and num[s] <= num[e]:
+            temp[i] = num[s]
+            s += 1
+        else:
+            temp[i] = num[e]
+            e += 1
+        i += 1
+    i = l
+    while i < r:
+        num[i] = temp[i]
+        i += 1
+
+t = int(input())
+ans = []
+temp = [0]*1000000  # 효율적인 코딩
+
+for tc in range(1, t+1):
+    n = int(input())
+    num = list(map(int, input().split()))
+    # temp = [0 for _ in range(n)] 이런식으로 코딩했었는데 메모리낭비, 시간낭비였다.
+    cnt = 0
+    merge(0, n)
+    ans.append(f"#{tc} {num[n//2]} {cnt}")
+print("\n".join(ans))
+```
+
