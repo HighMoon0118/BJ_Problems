@@ -1,6 +1,7 @@
 import sys
 sys.setrecursionlimit(10000)
 diff = [(1, 2), (0, 2), (0, 1)]
+
 def make_it(index, color):
     if index==n:
         return 0
