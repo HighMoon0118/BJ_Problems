@@ -22,4 +22,4 @@ while l<r:
     mid = (l+r)//2
     if check(): l = mid+1
     else: r = mid
-print(l-1)
+print(l-1)  
