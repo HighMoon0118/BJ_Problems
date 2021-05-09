@@ -7,7 +7,6 @@ time = list(map(int, input().split()))
 
 time.sort()
 l, r = 1, time[0]*m
-ans = r
 while l<=r:
     mid = (l+r)//2
     cnt = 0
