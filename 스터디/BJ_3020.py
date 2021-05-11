@@ -29,6 +29,7 @@ for h in range(1, height+1):
             cnt += 1
             j += 1
         else: break
+        
     if ans < cnt: continue
     elif ans == cnt:
         ansCnt += 1
