@@ -5,13 +5,14 @@ ans = []
 
 def dfs(parent, node):
     global is_tree
-    visited[node] = cnt
+    visited[node] = 1
     for i in tree[node]:
-        if i != parent and visited[i] == visited[node]:
+        if i != parent and visited[i]:
             is_tree = False
         elif not visited[i]:
             dfs(node, i)
 c = 1
+
 
 while True:
     n, m = map(int, input().split())
@@ -45,3 +46,5 @@ while True:
     c += 1
 
 print('\n'.join(ans))
+
+
