@@ -9,7 +9,7 @@ def solution(orders, course):
         for s in tmp:
             index = course.index(len(s))
             ans[index][s] = ans[index].get(s, 0)+1
-    
+
     answer = []     
     for words in ans:
         maxL = max(words.values()) if words.values() else 0
@@ -20,7 +20,7 @@ def solution(orders, course):
     answer.sort()
     return answer
 
-def makeIt(word, index, tmp, course):
+def makeIt(word, index, tmp, course):  # 재귀말고도 단순 for문으로도 만들 수 있음
     
     if index == len(word):
         if tmp and len(tmp) in course:
