@@ -2,7 +2,7 @@ def solution(key, lock):
     
     m = len(key[0])
     n = len(lock[0])
-    l = n+2*(n-1)
+    l = n+2*(m-1)
     
     board = [[0]*l for _ in range(l)]
     for r in range(n):
@@ -38,14 +38,13 @@ def rotate(key, m):
     return tmp
 
 def fillOut(key, board, m, row, col, fromNum, toNum):
-    possible = True
     for r in range(m):
         for c in range(m):
             if board[row+r][col+c] == fromNum and key[r][c] == 1:
                 board[row+r][col+c] = toNum
             elif board[row+r][col+c] and key[r][c]:
-                possible = False
-    return possible, board
+                return False, board
+    return True, board
 
 def check(board, m, n):
     for r in range(m-1, m-1+n):
