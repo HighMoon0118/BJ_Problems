@@ -27,12 +27,15 @@ def solution(m, musicinfos):
             idx += 1
             if idx == len(music):
                 idx = 0
-        print(totalMusic)
+
         if len(m) <= len(totalMusic):
             idx = totalMusic.find(m)
-            if idx > -1:
-                if idx+len(m) < len(totalMusic) and totalMusic[idx+len(m)] != "#":
+            while idx > -1:
+                if idx+len(m)==len(totalMusic) or idx+len(m) < len(totalMusic) and totalMusic[idx+len(m)] != "#":
                     answer.append((-during, a, lines[2]))
+                    break
+                else:
+                    idx = totalMusic.find(m, idx+1)
     if not answer:
         return "(None)"
     answer = sorted(answer)

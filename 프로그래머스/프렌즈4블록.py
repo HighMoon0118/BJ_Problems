@@ -30,5 +30,3 @@ def solution(m, n, board):
                         r += 1
         
     return ans
-
-print(solution(4, 5, ["CCBDE", "AAADE", "AAABF", "CCBBF"]))

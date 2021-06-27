@@ -28,5 +28,3 @@ def solution(dartResult):
     
     
     return sum(score)
-
-print(solution("1D2S#10S"))
