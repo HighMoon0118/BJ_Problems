@@ -9,8 +9,9 @@ def solution(board, moves):
     st = []
     ans = 0
     for move in moves:
-        r = rowOf[move-1]
-        c = move-1
+
+        r, c = rowOf[move-1], move-1
+        
         if r == n: continue
         elif not st or st[-1] != board[r][c]:
             st.append(board[r][c])
