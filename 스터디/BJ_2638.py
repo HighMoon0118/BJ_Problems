@@ -15,7 +15,6 @@ def fillOut(r, c):
         if 0<=nr<n and 0<=nc<m and not visit[nr][nc] and (board[nr][nc] <= 0):
             fillOut(nr, nc)
 
-
 def melt(r, c):
     cnt = 0
     for dr, dc in d:
@@ -38,7 +37,6 @@ def makeIt(r, c):
 
 
 n, m = map(int, input().split())
-
 board = [list(map(int, input().split())) for _ in range(n)]
 
 hour = 1
