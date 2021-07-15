@@ -31,8 +31,9 @@ for r in range(n):
 
             while que:
                 row, col, cnt = que.popleft()
-                if cnt == ans: break
+                if ans == cnt: break
                 if board[row][col] and num != board[row][col]:
+                    ans = cnt
                     break
                 for i in range(4):
                     nr, nc = row+dr[i], col+dc[i]
@@ -40,7 +41,6 @@ for r in range(n):
                         visit[nr][nc] = 1
                         que.append((nr, nc, cnt+1))
 
-            ans = min(ans, cnt)
             num += 1
 
 print(ans-1)
