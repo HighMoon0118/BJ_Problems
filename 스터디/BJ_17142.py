@@ -47,6 +47,7 @@ def makeIt(idx, num, bit):
     makeIt(idx+1, num+1, bit|(1<<idx))
     makeIt(idx+1, num, bit)
 
+
 n, m = map(int, input().split())
 
 board = [[1]*(n+2)] + [[1]+list(map(int, input().split()))+[1] for _ in range(n)] + [[1]*(n+2)]
@@ -57,10 +58,8 @@ blankCnt = 0
 
 for r in range(1, n+1):
     for c in range(1, n+1):
-        if board[r][c] == 2:
-            virus.append((r, c))
-        elif board[r][c] == 0:
-            blankCnt += 1
+        if board[r][c] == 2: virus.append((r, c))
+        elif board[r][c] == 0: blankCnt += 1
 
 ans = 2500
 makeIt(0, 0, 0)
