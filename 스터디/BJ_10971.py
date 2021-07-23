@@ -22,9 +22,7 @@ def makeIt(pre, cnt, total, start):
             makeIt(i, cnt+1, total+cost[pre][i], start)
             used[i] = 0
 
-for i in range(n):
-    used[i] = 1
-    makeIt(i, 1, 0, i)
-    used[i] = 0
+
+makeIt(0, 0, 0, 0)
     
 print(ans)
