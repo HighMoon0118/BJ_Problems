@@ -1,48 +1,47 @@
 import sys
-sys.setrecursionlimit(2500)
 
 input = sys.stdin.readline
 
-def makeIt(row, col, how):
-    global ans
-    
-    if board[row][col] == 0:
-        ans += 1
-        board[row][col] == 2
-
-    nr, nc = row+d[how][0], col+d[how][1]
-
-    if 0<=nr<n and 0<=nc<m:
-        if board[nr][nc]==0:
-            makeIt(nr, nc, (how+3)%4)
-        else:
-            if possible(row, col):
-                makeIt(row, col, (how+3)%4)
-            else:
-                back = (how+3)%4
-                nr, nc = row+d[back][0], col+d[back][1]
-                if 0<=nr<n and 0<=nc<m and board[nr][nc] != 1:
-                    makeIt(nr, nc, how)
-                else:
-                    return
-
-
-def possible(row, col):
-    for dr, dc in d:
-        nr, nc = row+dr, col+dc
-        if 0<=nr<n and 0<=nc<m and board[nr][nc]==0:
-            return True
-    return False
-
 n, m = map(int, input().split())
 
-r, c, dir = map(int, input().split())
+board=[]
+homes=[]
+chickens=[]
 
-board = [list(map(int, input().split())) for _ in range(n)]
+for i in range(n):
+    board.append(list(map(int, input().split())))
+    for j in range(n):
+        if board[i][j]==1:
+            homes.append((i, j))
+        elif board[i][j]==2:
+            chickens.append((i,j))
 
-d = [(0, 0), (-1, 0), (0, 1), (1, 0)]
+dist=[[0 for _ in range(len(chickens))] for _ in range(len(homes))]
 
-ans = 0
+for i in range(len(homes)):
+    for j in range(len(chickens)):
+        dist[i][j]=abs(homes[i][0]-chickens[j][0])+abs(homes[i][1]-chickens[j][1])
 
-makeIt(r, c, dir)
+check = [False for _ in range(len(chickens))]
+ans=10001
+def makeAnswer(start, count):
+    global ans
+    if count==m:
+        d_min=[100 for _ in range(len(homes))]
+
+        for i in range(len(chickens)):
+            if check[i]:
+                for j in range(len(homes)):
+                    d_min[j]=min(d_min[j], dist[j][i])
+        ans=min(ans, sum(d_min))
+        return
+
+    for i in range(start, len(chickens)):
+        check[i]=True
+        makeAnswer(i+1, count+1)
+        check[i]=False
+
+makeAnswer(0,0)
 print(ans)
+
+    

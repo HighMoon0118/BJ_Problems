@@ -16,7 +16,7 @@ def makeIt(row, col, how, cnt):
         nr, nc = row+d[nhow][0], col+d[nhow][1]
         if board[nr][nc] == 1: return
         else: makeIt(nr, nc, how, 0)
-    elif board[nr][nc]: makeIt(row, col, nhow, cnt+1)
+    else: makeIt(row, col, nhow, cnt+1)
 
 n, m = map(int, input().split())
 
