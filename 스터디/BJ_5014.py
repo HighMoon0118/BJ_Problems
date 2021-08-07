@@ -24,7 +24,7 @@ def makeIt(idx, mList, mDict, total, cnt, toggle):
     if(toggle==0): 
         makeIt(idx+1, mList, mDict, total+mList[idx], cnt+1, 1)
         makeIt(idx+1, mList, mDict, total, cnt, 0)
-    if(toggle==1): 
+    elif(toggle==1): 
         makeIt(idx+1, mList, mDict, total+mList[idx], cnt+1, 1)
         makeIt(idx+1, mList, mDict, total, cnt, 2)
 
