@@ -12,24 +12,20 @@ def makeIt(word):
     if word.startswith("100"):
         i = 3
         while i<len(word):
-            if word[i] == "0":
-                i += 1
+            if word[i] == "0": i += 1
             else: break
 
-        if i == len(word): return
+        if i == len(word): return  # 1000 일 경우 return
 
         j = i
         while i<len(word):
-            if word[i] == "1":
-                i += 1
+            if word[i] == "1": i += 1
             else: break
 
-        if j+1!=i and i<len(word)-1 and word[i] == word[i+1] == "0":
-            makeIt(word[i-1:])
-        else: makeIt(word[i:])
+        if j+1!=i and i<len(word)-1 and word[i+1] == "0": makeIt(word[i-1:])  # 10011001 일 경우
+        else: makeIt(word[i:]) # 100101 일 경우
 
-    elif word.startswith("01"):
-        makeIt(word[2:])
+    elif word.startswith("01"): makeIt(word[2:])
 
 ans = "NOISE"
 
