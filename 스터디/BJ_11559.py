@@ -32,6 +32,7 @@ def dfs(row, col, color):
         nr, nc = row+dr, col+dc
         if 0 <= nr < 12 and 0 <= nc < 6:
             dfs(nr, nc, color)
+
 ans = 0
 while True:
     isChanged = False

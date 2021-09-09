@@ -23,7 +23,6 @@ def makeIt(idx, bit, tmp):
     makeIt(idx+1, bit|(1<<idx), tmp+num[idx])
     makeIt(idx+1, bit, tmp)
 
-
 def dfs1(idx):
     if visit[idx] or not bit&(1<<idx): return
     visit[idx] = 1
@@ -35,7 +34,6 @@ def dfs2(idx):
     visit[idx] = 1
     for node in graph[idx]:
         dfs2(node)
-
 
 def check():
     for i in range(n):
