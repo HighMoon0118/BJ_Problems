@@ -18,7 +18,7 @@ ans = []
 info = []
 for _ in range(n):
     info.append(input().split())
-info.sort(key=lambda x: (x[1:], x[0]))  # 알파벳 순서대로 정렬 후 길이 순으로 정렬
+info.sort(key=lambda x: x[1:])  # 알파벳 순서대로 정렬
 
 for i in range(n):
     makeIt(info[i][1:])
