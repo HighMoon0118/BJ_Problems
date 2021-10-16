@@ -1,5 +1,5 @@
 import sys
-
+sys.setrecursionlimit(250000)
 input = sys.stdin.readline
 
 d = [(0,1), (1,0), (0,-1), (-1,0)]
