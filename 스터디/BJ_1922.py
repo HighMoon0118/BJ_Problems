@@ -29,7 +29,6 @@ ans = 0
 cnt = 0
 for c, a, b in link:
     if find(a) != find(b):
-        print("연결", a, b)
         ans += c
         cnt += 1
         union(a, b)
