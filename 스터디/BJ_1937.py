@@ -7,7 +7,7 @@ dr = [0, 1, 0, -1]
 dc = [1, 0, -1, 0]
 def makeIt(r, c):
 
-    if dp[r][c]>=0: dp[r][c]
+    if dp[r][c]>=0: return dp[r][c]
 
     result = 0
     for i in range(4):
