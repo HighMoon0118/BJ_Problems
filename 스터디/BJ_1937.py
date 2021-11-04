@@ -12,7 +12,7 @@ def makeIt(r, c):
     result = 0
     for i in range(4):
         nr, nc = r+dr[i], c+dc[i]
-        if board[nr][nc] and board[r][c] < board[nr][nc]:
+        if board[r][c] < board[nr][nc]:
             result = max(result, 1 + makeIt(nr, nc))
     dp[r][c] = result
     return dp[r][c]
