@@ -4,15 +4,13 @@ input = sys.stdin.readline
 
 def dfs(idx, o):
     global a
-
-    if order[idx]:
-        a += o-order[idx]
-        return
     
     order[idx] = o
     visit[idx] = num
-    if not visit[friendOf[idx]] or visit[idx] == visit[friendOf[idx]]:
+    if not visit[friendOf[idx]]:
         dfs(friendOf[idx], o+1)
+    elif visit[idx] == visit[friendOf[idx]]:
+        a += o-order[friendOf[idx]]+1
     
 ans = []
 tc = int(input())
