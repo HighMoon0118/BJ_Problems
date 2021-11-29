@@ -3,16 +3,15 @@ sys.setrecursionlimit(200001)
 input = sys.stdin.readline
 
 def dfs(idx, o):
-    global a
+    global ans
     
     order[idx] = o
     visit[idx] = num
-    if not visit[friendOf[idx]]:
-        dfs(friendOf[idx], o+1)
-    elif visit[idx] == visit[friendOf[idx]]:
-        a += o-order[friendOf[idx]]+1
+
+    if not visit[friendOf[idx]]: dfs(friendOf[idx], o+1)
+    elif visit[friendOf[idx]] == num: ans += o - order[friendOf[idx]] + 1
     
-ans = []
+answer = []
 tc = int(input())
 for _ in range(tc):
 
@@ -23,12 +22,12 @@ for _ in range(tc):
     order = [0]*(n+1)
 
     num = 1
-    a = 0
+    ans = 0
 
     for i in range(1, n+1):
         if not visit[i]:
             dfs(i, 1)
             num += 1
 
-    ans.append(str(n - a))
-print("\n".join(ans))
+    answer.append(str(n - ans))
+print("\n".join(answer))
