@@ -23,7 +23,6 @@ alphaU = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5}
 ans = -1
 while que:
     dist, row, col, bit = que.popleft()
-    print(row, col, dist)
 
     finish = 0
     for i in range(4):
