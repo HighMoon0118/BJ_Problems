@@ -13,7 +13,6 @@ for r in range(n):
         if board[r][c] == "0":
             sr, sc = r, c
             board[r][c] = "."
-            visit[r][c][0] = 1
         
 que = deque()
 que.append((0, sr, sc, 0))
@@ -23,31 +22,19 @@ alphaU = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5}
 ans = -1
 while que:
     dist, row, col, bit = que.popleft()
+    
+    if visit[row][col][bit]: continue
+    visit[row][col][bit] = 1
+    if board[row][col] == "1":
+        ans = dist
+        break
 
-    finish = 0
     for i in range(4):
         nr, nc = row+d[i][0], col+d[i][1]
         if 0<=nr<n and 0<=nc<m and board[nr][nc] != "#":
-
-            if board[nr][nc] == "1":
-                ans = dist + 1
-                finish = 1
-                break
-
-            if board[nr][nc] != ".":
+            if board[nr][nc] == "." or board[nr][nc] == "1": que.append((dist+1, nr, nc, bit))
+            else:
                 c = board[nr][nc]
-                if c in alphaL:
-                    b = bit | (1 << alphaL[c])
-                    if not visit[nr][nc][b]:
-                        visit[nr][nc][b] = 1
-                        que.append((dist+1, nr, nc, b))
-                elif c in alphaU and bit & (1 << alphaU[c]) and not visit[nr][nc][bit]:
-                    visit[nr][nc][bit] = 1
-                    que.append((dist+1, nr, nc, bit))
-            elif not visit[nr][nc][bit]:
-                visit[nr][nc][bit] = 1
-                que.append((dist+1, nr, nc, bit))
-            
-    if finish: break
-
+                if c in alphaL: que.append((dist+1, nr, nc, bit|(1<<alphaL[c])))
+                elif c in alphaU and bit & (1 << alphaU[c]): que.append((dist+1, nr, nc, bit))
 print(ans)
