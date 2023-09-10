@@ -47,8 +47,9 @@ fun main() {
                 }
             }
             i ++
+            if (i == word.length) list.add(tmpList.toWord())
         }
-        if (tmpList.isNotEmpty()) list.add(tmpList.toWord())
+
         return list.toWord()
     }
 
