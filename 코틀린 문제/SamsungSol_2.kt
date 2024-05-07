@@ -12,40 +12,53 @@ fun main() {
                     }
                 }
             }
-    val dp = Array(numList.size) { Array(numList.size) { -1 } }
+    val dp = Array(idxList.size) { Array(numList.size) { -1 } }
 
-    fun makeAns(idx: Int, order: Int, idx2: Int): Int {
-        if (order == numList.size) return 0
+    fun makeAns(i: Int, startIdx: Int): Int {
+        if (i == idxList.size) return 0
 
-        if (dp[idx][order] >= 0) return dp[idx][order]
+        if (dp[i][startIdx] >= 0) return dp[i][startIdx]
 
         var tmp = Int.MAX_VALUE
-        for (num in idxList[idx2]) {
-            if (!num.visited) {
-                num.visited = true
-                tmp = minOf(tmp, Math.abs(num.idx - idx) + makeAns(num.idx, order + 1, idx2))
-                num.visited = false
-            }
-        }
-        if (tmp == Int.MAX_VALUE) {
-            tmp = makeAns(idx, order, idx2+1)
-        }
-        dp[idx][order] = tmp
 
-        return dp[idx][order]
+        for (end in idxList[i]) {
+            tmp = minOf(tmp, idxList[i].minDistOf(startIdx, end.idx) + makeAns(i + 1, end.idx))
+        }
+
+        dp[i][startIdx] = tmp
+
+        return dp[i][startIdx]
     }
 
     var tmp = Int.MAX_VALUE
 
-    for (num in idxList[0]) {
-        if (!num.visited) {
-            num.visited = true
-            tmp = minOf(tmp, num.idx + makeAns(num.idx, 1, 0))
-            num.visited = false
-        }
+    for (end in idxList[0]) {
+        tmp = minOf(tmp, idxList[0].minDistOf(0, end.idx) + makeAns(1, end.idx))
     }
 
     println(tmp)
+}
+
+/**
+ * Disk Scheduling - SCAN
+ */
+fun ArrayList<Num>.minDistOf(startIdx: Int, endIdx: Int): Int {
+    val ls = Math.abs(startIdx - first().idx)
+    val le = Math.abs(endIdx - first().idx)
+    val sr = Math.abs(last().idx - startIdx)
+    val er = Math.abs(last().idx - endIdx)
+    val lr = Math.abs(last().idx - first().idx)
+    /**
+     *  s l e r
+     *  l s e r
+     *  l e s r
+     *  l e r s
+     */
+    if (startIdx < endIdx) {
+        return ls + lr + er
+    } else {
+        return sr + lr + le
+    }
 }
 
 data class Num(
