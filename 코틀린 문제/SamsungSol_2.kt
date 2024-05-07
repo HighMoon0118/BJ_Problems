@@ -6,9 +6,9 @@ fun main() {
             .map { it.first }
             .toSortedSet()
             .map {
-                arrayListOf<Num>().apply {
+                arrayListOf<Int>().apply {
                     for ((num, i) in numList) {
-                        if (num == it) add(Num(i, false))
+                        if (num == it) add(i)
                     }
                 }
             }
@@ -22,7 +22,7 @@ fun main() {
         var tmp = Int.MAX_VALUE
 
         for (end in idxList[i]) {
-            tmp = minOf(tmp, idxList[i].minDistOf(startIdx, end.idx) + makeAns(i + 1, end.idx))
+            tmp = minOf(tmp, idxList[i].minDistOf(startIdx, end) + makeAns(i + 1, end))
         }
 
         dp[i][startIdx] = tmp
@@ -33,7 +33,7 @@ fun main() {
     var tmp = Int.MAX_VALUE
 
     for (end in idxList[0]) {
-        tmp = minOf(tmp, idxList[0].minDistOf(0, end.idx) + makeAns(1, end.idx))
+        tmp = minOf(tmp, idxList[0].minDistOf(0, end) + makeAns(1, end))
     }
 
     println(tmp)
@@ -42,12 +42,12 @@ fun main() {
 /**
  * Disk Scheduling - SCAN
  */
-fun ArrayList<Num>.minDistOf(startIdx: Int, endIdx: Int): Int {
-    val ls = Math.abs(startIdx - first().idx)
-    val le = Math.abs(endIdx - first().idx)
-    val sr = Math.abs(last().idx - startIdx)
-    val er = Math.abs(last().idx - endIdx)
-    val lr = Math.abs(last().idx - first().idx)
+fun ArrayList<Int>.minDistOf(startIdx: Int, endIdx: Int): Int {
+    val ls = Math.abs(startIdx - first())
+    val le = Math.abs(endIdx - first())
+    val sr = Math.abs(last() - startIdx)
+    val er = Math.abs(last() - endIdx)
+    val lr = Math.abs(last() - first())
     /**
      *  s l e r
      *  l s e r
@@ -60,8 +60,3 @@ fun ArrayList<Num>.minDistOf(startIdx: Int, endIdx: Int): Int {
         return sr + lr + le
     }
 }
-
-data class Num(
-    val idx: Int,
-    var visited: Boolean
-)
